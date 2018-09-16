@@ -41,7 +41,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="password-input">Tanggal Berakhir</label>
                     <div class="col-md-9">
-                        <input class="form-control" id="end_date" type="text" name="end_date" required placeholder="ex. 2018-01-01"  value="<?= isset($result[0]['end_date']) ? $result[0]['end_date'] : "" ?>">
+                        <input class="form-control" id="datepicker" type="text" name="end_date" required placeholder="ex. 2018-01-01"  value="<?= isset($result[0]['end_date']) ? $result[0]['end_date'] : "" ?>">
                         <!-- <span class="help-block">Please enter a complex password</span> -->
                     </div>
                 </div>
@@ -73,3 +73,8 @@
     </div>
     <!-- /.col-->
 </div>
+<script>
+    $('#datepicker').datepicker({
+        uiLibrary: 'bootstrap4'
+    });
+</script>

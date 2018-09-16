@@ -18,9 +18,51 @@ class Site extends CI_Controller {
 		$this->load->view('manage/main_layout',$data);
 	}
 	
+	public function home()
+	{
+		$data['content'] = 'manage/content/_form_pendaftaran';
+		$data['result'] = "";
+		$this->load->view('manage/main_layout',$data);	
+	}
+	
 	public function pendaftaran()
 	{
 		$data['content'] = 'manage/content/_form_pendaftaran';
+		$data['result'] = "";
+		$this->load->view('manage/main_layout',$data);	
+	}
+
+	public function materi()
+	{
+		$data['content'] = 'manage/content/_list_materi';
+		$data['result'] = "";
+		$this->load->view('manage/main_layout',$data);	
+	}
+
+	public function jadwal()
+	{
+		$data['content'] = 'manage/content/_list_jadwal';
+		$data['result'] = "";
+		$this->load->view('manage/main_layout',$data);	
+	}
+
+	public function instruktur()
+	{
+		$data['content'] = 'manage/content/_list_instruktur';
+		$data['result'] = "";
+		$this->load->view('manage/main_layout',$data);	
+	}
+
+	public function pembayaran()
+	{
+		$data['content'] = 'manage/content/_list_pembayaran';
+		$data['result'] = "";
+		$this->load->view('manage/main_layout',$data);	
+	}
+
+	public function user()
+	{
+		$data['content'] = 'manage/content/_list_pembayaran';
 		$data['result'] = "";
 		$this->load->view('manage/main_layout',$data);	
 	}

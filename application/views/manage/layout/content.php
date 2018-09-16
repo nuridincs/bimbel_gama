@@ -11,13 +11,13 @@
             <li class="nav-title">List</li>
             <?php if($this->session->userdata('id_user_role') == 2){ ?>
               <li class="nav-item">
-                <a href="<?= base_url('manage/konfirmasi'); ?>" class="nav-link" href="colors.html">
+                <a href="<?= base_url('site/jadwal'); ?>" class="nav-link" href="colors.html">
                   <i class="fa fa-window-maximize"></i> Jadwal
                 </a>
             </li>
             <?php }else{ ?>
             <li class="nav-item">
-              <a href="<?= base_url('manage/kegiatan'); ?>" class="nav-link" href="colors.html">
+              <a href="<?= base_url('site/dashboard'); ?>" class="nav-link" href="colors.html">
                 <i class="fa fa-window-maximize"></i> Home
               </a>
             </li>
@@ -25,6 +25,38 @@
               <a href="<?= base_url('site/pendaftaran'); ?>" class="nav-link" href="colors.html">
                 <i class="fa fa-window-maximize"></i> Pendaftaran
               </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('site/jadwal'); ?>" class="nav-link" href="colors.html">
+                <i class="fa fa-window-maximize"></i> Jadwal
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('site/pembayaran'); ?>" class="nav-link" href="colors.html">
+                <i class="fa fa-window-maximize"></i> Pembayaran
+              </a>
+            </li>
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" href="#">
+                <i class="fa fa-list-alt"></i> Data</a>
+              <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                  <a class="nav-link" href="<?= base_url('site/user'); ?>">
+                    <i class="icons cui-user"></i> User</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?= base_url('site/jadwal'); ?>">
+                    <i class="fa fa-money"></i> Jadwal</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?= base_url('site/materi'); ?>">
+                    <i class="fa fa-bank"></i> Materi</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<?= base_url('site/instruktur'); ?>">
+                    <i class="fa fa-bank"></i> Instruktur</a>
+                </li>
+              </ul>
             </li>
             <li class="nav-item">
               <a href="<?= base_url('manage/kegiatan'); ?>" class="nav-link" href="colors.html">
