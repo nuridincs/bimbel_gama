@@ -9,31 +9,26 @@
               </a>
             </li> -->
             <li class="nav-title">List</li>
-            <?php if($this->session->userdata('id_user_role') == 2){ ?>
+            <li class="nav-item">
+              <a href="<?= base_url('site/home'); ?>" class="nav-link" href="colors.html">
+                <i class="fa fa-window-maximize"></i> Home
+              </a>
+            </li>
+            <?php if($this->session->userdata('id_user_role') == 3){ ?>
               <li class="nav-item">
                 <a href="<?= base_url('site/jadwal'); ?>" class="nav-link" href="colors.html">
                   <i class="fa fa-window-maximize"></i> Jadwal
                 </a>
             </li>
-            <?php }else{ ?>
-            <li class="nav-item">
-              <a href="<?= base_url('site/dashboard'); ?>" class="nav-link" href="colors.html">
-                <i class="fa fa-window-maximize"></i> Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?= base_url('site/pendaftaran'); ?>" class="nav-link" href="colors.html">
-                <i class="fa fa-window-maximize"></i> Pendaftaran
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="<?= base_url('site/jadwal'); ?>" class="nav-link" href="colors.html">
-                <i class="fa fa-window-maximize"></i> Jadwal
-              </a>
-            </li>
+
             <li class="nav-item">
               <a href="<?= base_url('site/pembayaran'); ?>" class="nav-link" href="colors.html">
                 <i class="fa fa-window-maximize"></i> Pembayaran
+              </a>
+            <?php }else if($this->session->userdata('id_user_role') == 4){ ?>
+            <li class="nav-item">
+              <a href="<?= base_url('site/list_peserta_didik'); ?>" class="nav-link" href="colors.html">
+                <i class="fa fa-window-maximize"></i> Peserta Didik
               </a>
             </li>
             <li class="nav-item nav-dropdown">
@@ -58,17 +53,26 @@
                 </li>
               </ul>
             </li>
+            <?php }else{ ?>
+              
             <li class="nav-item">
-              <a href="<?= base_url('manage/kegiatan'); ?>" class="nav-link" href="colors.html">
-                <i class="fa fa-window-maximize"></i> Kontak
+              <a href="<?= base_url('site/pendaftaran'); ?>" class="nav-link" href="colors.html">
+                <i class="fa fa-window-maximize"></i> Pendaftaran
               </a>
             </li>
             <?php } ?>
 
             <li class="nav-item">
+              <a href="<?= base_url('site/kontak'); ?>" class="nav-link" href="colors.html">
+                <i class="fa fa-window-maximize"></i> Kontak
+              </a>
+            </li>
+            <?php if($this->session->userdata('status') == "login"){ ?>
+            <li class="nav-item">
               <a href="<?= base_url('login/logout'); ?>" class="nav-link" href="typography.html">
                 <i class="fa fa-sign-out"></i> Keluar</a>
             </li>
+          <?php } ?>
           </ul>
         </nav>
         <button class="sidebar-minimizer brand-minimizer" type="button"></button>

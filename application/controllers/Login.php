@@ -32,16 +32,17 @@ class Login extends CI_Controller{
 			// print_r($data_session);
 			$this->session->set_userdata($data_session);
 
-			redirect(base_url("manage/dashboard"));
+			redirect(base_url("site/home"));
 
 		}else{
-            echo "<script>alert('Username dan password salah !');</script>";
-            redirect('login');
+            // echo "<script>alert('Username dan password salah !');</script>";
+            $this->session->set_flashdata('status', 'failed');
+            redirect('site');
 		}
 	}
 
 	function logout(){
 		$this->session->sess_destroy();
-		redirect('login');
+		redirect('site');
 	}
 }

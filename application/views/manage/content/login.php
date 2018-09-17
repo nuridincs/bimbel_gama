@@ -35,7 +35,12 @@
               <div class="card-body">
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
-
+                <?php if ($this->session->flashdata('status') == 'failed'): ?>
+                  <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                    <span>Username atau password salah!!</span>
+                  </div>
+                <?php endif; ?>
                 <form action="<?php echo base_url('login/aksi_login'); ?>" method="post">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">

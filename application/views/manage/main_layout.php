@@ -40,9 +40,9 @@
     <script src="<?= base_url(); ?>assets/manage/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
     <script src="<?= base_url(); ?>assets/manage/node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
     <!-- Plugins and scripts required by this view-->
-    <script src="<?= base_url(); ?>assets/manage/node_modules/chart.js/dist/Chart.min.js"></script>
+    <!-- <script src="<?= base_url(); ?>assets/manage/node_modules/chart.js/dist/Chart.min.js"></script> -->
     <script src="<?= base_url(); ?>assets/manage/node_modules/@coreui/coreui-plugin-chartjs-custom-tooltips/dist/js/custom-tooltips.min.js"></script>
-    <script src="<?= base_url(); ?>assets/manage/js/main.js"></script>
+    <!-- <script src="<?= base_url(); ?>assets/manage/js/main.js"></script> -->
     <script src="<?= base_url(); ?>assets/vendor/datatables.net-bs4/js/jquery.dataTables.js"></script>
     <script src="<?= base_url(); ?>assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
     <script src="<?= base_url(); ?>assets/vendor/datatables.net-bs4/js/datatables.js"></script>

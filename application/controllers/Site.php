@@ -5,9 +5,10 @@ class Site extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 		$this->load->model('m_site','site');
+		// $this->load->model('m_manage','manage');
 		$this->load->library('email'); 
-        // if (!$this->session->userdata('logged_in')){
-		// 	redirect('login');
+  //       if (!$this->session->userdata('login')){
+		// 	redirect('site');
 		// }
 	}
 	
@@ -20,9 +21,11 @@ class Site extends CI_Controller {
 	
 	public function home()
 	{
-		$data['content'] = 'manage/content/_form_pendaftaran';
-		$data['result'] = "";
-		$this->load->view('manage/main_layout',$data);	
+		// if($this->session->userdata('status') != "login"){
+		// 	redirect("manage");
+		// }
+		$data['content'] = 'manage/content/_dashboard';
+		$this->load->view('manage/main_layout',$data);
 	}
 	
 	public function pendaftaran()
@@ -35,35 +38,42 @@ class Site extends CI_Controller {
 	public function materi()
 	{
 		$data['content'] = 'manage/content/_list_materi';
-		$data['result'] = "";
+		$data['result'] = $this->site->getData('materi');
 		$this->load->view('manage/main_layout',$data);	
 	}
 
 	public function jadwal()
 	{
 		$data['content'] = 'manage/content/_list_jadwal';
-		$data['result'] = "";
+		$data['result'] = $this->site->getData('jadwal');
 		$this->load->view('manage/main_layout',$data);	
 	}
 
 	public function instruktur()
 	{
 		$data['content'] = 'manage/content/_list_instruktur';
-		$data['result'] = "";
+		$data['result'] = $this->site->getData('instruktur');
 		$this->load->view('manage/main_layout',$data);	
 	}
 
-	public function pembayaran()
+	public function list_peserta_didik()
 	{
-		$data['content'] = 'manage/content/_list_pembayaran';
-		$data['result'] = "";
+		$data['content'] = 'manage/content/_list_peserta_didik';
+		$data['result'] = $this->site->getData('peserta_didik');
 		$this->load->view('manage/main_layout',$data);	
 	}
 
 	public function user()
 	{
-		$data['content'] = 'manage/content/_list_pembayaran';
-		$data['result'] = "";
+		$data['content'] = 'manage/content/_list_user';
+		$data['result'] = $this->site->getData('user');
+		$this->load->view('manage/main_layout',$data);	
+	}
+
+	public function kontak()
+	{
+		$data['content'] = 'manage/content/kontak';
+		//$data['result'] = $this->site->getData('user');
 		$this->load->view('manage/main_layout',$data);	
 	}
 

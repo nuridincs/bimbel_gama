@@ -4,7 +4,7 @@
       <div class="animated fadeIn">
          <div class="card">
             <div class="card-header">
-               <i class="fa fa-edit"></i> Data Kegiatan
+               <i class="fa fa-edit"></i> Data Jadwal
                <div class="card-header-actions">
                   <a href="https://datatables.net" class="card-header-action" target="_blank">
                   <!-- <small class="text-muted">docs</small> -->
@@ -22,11 +22,10 @@
                         <table class="table table-striped table-bordered datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="border-collapse: collapse !important">
                            <thead>
                               <tr role="row">
-                                 <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Username: activate to sort column descending" style="width: 202px;">Nama Kegiatan</th>
-                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date registered: activate to sort column ascending" style="width: 170px;">Target Dana</th>
-                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 68px;">Unix ID</th>
-                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 82px;">Tgl. Mulai</th>
-                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 82px;">Tgl. Berakhir</th>
+                                 <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Username: activate to sort column descending" style="width: 202px;">Nama Materi</th>
+                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Date registered: activate to sort column ascending" style="width: 170px;">Nama Program</th>
+                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 68px;">Nama Instruktur</th>
+                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 82px;">Tgl. Belajar</th>
                                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 168px;">Actions</th>
                               </tr>
                            </thead>
@@ -39,7 +38,6 @@
                                  <td>
                                     <?= $value['start_date']; ?>
                                  </td>
-                                 <td><?= $value['end_date']; ?></td>
                                  <td>
                                     <a class="btn btn-info" href="<?= base_url('manage/action/update/kegiatan/').base64_encode($value['id']); ?>">
                                         <i class="fa fa-edit "></i>Ubah
