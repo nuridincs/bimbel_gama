@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 <div style="padding: 0px 60px;">
-                    <a href="<?= base_url('manage/action/add/kegiatan'); ?>" class="btn btn-primary btn-sm">Tambah Data</a>
+                    <a href="<?= base_url('site/page/add/instruktur'); ?>" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <br>
                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">

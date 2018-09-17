@@ -33,8 +33,8 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
-                <h1>Login</h1>
-                <p class="text-muted">Sign In to your account</p>
+                <h1 align="center">Login Aplikasi</h1>
+                <!-- <p class="text-muted">Sign In to your account</p> -->
                 <?php if ($this->session->flashdata('status') == 'failed'): ?>
                   <div class="alert alert-danger alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    

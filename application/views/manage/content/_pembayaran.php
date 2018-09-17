@@ -4,7 +4,7 @@
       <div class="animated fadeIn">
          <div class="card">
             <div class="card-header">
-               <i class="fa fa-edit"></i> Data Peserta Didik
+               <i class="fa fa-edit"></i> Data Pembayaran
                <div class="card-header-actions">
                   <a href="https://datatables.net" class="card-header-action" target="_blank">
                   <!-- <small class="text-muted">docs</small> -->

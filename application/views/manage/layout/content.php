@@ -41,7 +41,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?= base_url('site/jadwal'); ?>">
-                    <i class="fa fa-money"></i> Jadwal</a>
+                    <i class="fa fa-bank"></i> Jadwal</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="<?= base_url('site/materi'); ?>">
@@ -71,6 +71,11 @@
             <li class="nav-item">
               <a href="<?= base_url('login/logout'); ?>" class="nav-link" href="typography.html">
                 <i class="fa fa-sign-out"></i> Keluar</a>
+            </li>
+          <?php }else{ ?>
+            <li class="nav-item">
+              <a href="<?= base_url('site/index'); ?>" class="nav-link" href="typography.html">
+                <i class="fa fa-sign-out"></i> Login</a>
             </li>
           <?php } ?>
           </ul>

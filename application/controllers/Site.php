@@ -70,11 +70,36 @@ class Site extends CI_Controller {
 		$this->load->view('manage/main_layout',$data);	
 	}
 
+	public function pembayaran()
+	{
+		$data['content'] = 'manage/content/_pembayaran';
+		$data['result'] = [];//$this->site->getData('user');
+		$this->load->view('manage/main_layout',$data);	
+	}
+
 	public function kontak()
 	{
 		$data['content'] = 'manage/content/kontak';
 		//$data['result'] = $this->site->getData('user');
 		$this->load->view('manage/main_layout',$data);	
+	}
+
+	public function page($type="",$act = ""){
+		if($type == "add"){
+			if($act == "jadwal"){
+				$data['content'] = 'manage/content/form/_jadwal';
+				//$data['result'] = $this->site->getData('user');
+				$this->load->view('manage/main_layout',$data);
+			}elseif($act == "materi"){
+				$data['content'] = 'manage/content/form/_materi';
+				//$data['result'] = $this->site->getData('user');
+				$this->load->view('manage/main_layout',$data);
+			}elseif($act == "instruktur"){
+				$data['content'] = 'manage/content/form/_instruktur';
+				//$data['result'] = $this->site->getData('user');
+				$this->load->view('manage/main_layout',$data);
+			}
+		}
 	}
 
 	public function action($type="",$act="",$id=""){
