@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 <div style="padding: 0px 60px;">
-                    <a href="<?= base_url('manage/action/add/user'); ?>" class="btn btn-primary btn-sm">Tambah Data</a>
+                    <a href="<?= base_url('site/page/add/user'); ?>" class="btn btn-primary btn-sm">Tambah Data</a>
                 </div>
                 <br>
                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
@@ -35,13 +35,13 @@
                                  <td><?= $value['email']; ?></td>
                                  <td><?= $value['no_telpon']; ?></td>
                                  <td>
-                                    <a class="btn btn-info" href="<?= base_url('manage/action/update/user/').base64_encode($value['id']); ?>">
+                                    <a class="btn btn-info" href="<?= base_url('site/page/update/user/').base64_encode($value['id']); ?>">
                                         <i class="fa fa-edit "></i>Ubah
                                     </a>
                                     <!-- <a class="btn btn-danger" href="<?//= base_url('manage/action/delete/user'); ?>">
                                         <i class="fa fa-trash-o "></i>Hapus
                                     </a> -->
-                                    <a href="<?= base_url('manage/execute/delete/user/').$value['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa fa-trash-o "></i>Hapus</a>
+                                    <a href="<?= base_url('site/execute/delete/user/').$value['id']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa fa-trash-o "></i>Hapus</a>
                                  </td>
                               </tr>
                                <?php } ?>

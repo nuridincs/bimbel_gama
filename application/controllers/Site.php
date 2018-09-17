@@ -84,22 +84,173 @@ class Site extends CI_Controller {
 		$this->load->view('manage/main_layout',$data);	
 	}
 
-	public function page($type="",$act = ""){
+	public function page($type="",$act = "",$id=""){
 		if($type == "add"){
 			if($act == "jadwal"){
 				$data['content'] = 'manage/content/form/_jadwal';
-				//$data['result'] = $this->site->getData('user');
+				$data['data_materi'] = $this->site->getData('materi');
+				$data['data_instruktur'] = $this->site->getData('instruktur');
 				$this->load->view('manage/main_layout',$data);
 			}elseif($act == "materi"){
 				$data['content'] = 'manage/content/form/_materi';
-				//$data['result'] = $this->site->getData('user');
+				$data['data_instruktur'] = $this->site->getData('instruktur');
 				$this->load->view('manage/main_layout',$data);
 			}elseif($act == "instruktur"){
 				$data['content'] = 'manage/content/form/_instruktur';
 				//$data['result'] = $this->site->getData('user');
 				$this->load->view('manage/main_layout',$data);
+			}elseif($act == "user"){
+				$data['content'] = 'manage/content/_user';
+				$this->load->view('manage/main_layout',$data);
+			}
+		}elseif($type == "update"){
+			if($act == "instruktur"){
+				$id = base64_decode($id);
+				$data['content'] = 'manage/content/form/_instruktur';
+				$data['result'] = $this->site->getData('instrukturById',$id);
+				// print_r($data['result']);die;
+				$this->load->view('manage/main_layout',$data);
+			}elseif($act == "materi"){
+				$id = base64_decode($id);
+				$data['content'] = 'manage/content/form/_materi';
+				$data['result'] = $this->site->getData('materiById',$id);
+				$data['data_instruktur'] = $this->site->getData('instruktur');
+				// print_r($data['result']);die;
+				$this->load->view('manage/main_layout',$data);
+			}elseif($act == "jadwal"){
+				$id = base64_decode($id);
+				$data['content'] = 'manage/content/form/_jadwal';
+				$data['result'] = $this->site->getData('jadwalById',$id);
+				$data['data_instruktur'] = $this->site->getData('instruktur');
+				
+				$data['data_materi'] = $this->site->getData('materi');
+				$this->load->view('manage/main_layout',$data);
+			}elseif($act == "user"){
+				$data['result'] = $this->site->getData('userById',base64_decode($id));
+				$data['content'] = 'manage/content/_user';
+				$this->load->view('manage/main_layout',$data);
 			}
 		}
+	}
+
+	public function execute($type="",$act="",$id=""){
+		if($type == 'add'){
+			if($act == 'instruktur'){
+				$data_instruktur = array(
+					'nama_instruktur' => $this->input->post('nama_instruktur'),
+					'email' => $this->input->post('email'),
+					'no_telpon' => $this->input->post('no_telpon'),
+					'created_at' => date('Y-m-d H:i:s')
+				);
+				$this->db->insert('app_instruktur',$data_instruktur);
+				$this->session->set_flashdata('status', '200');
+				redirect('site/instruktur');
+			}elseif($act == 'materi'){
+				$data = array(
+					'nama_materi' => $this->input->post('nama_materi'),
+					'id_instruktur' => $this->input->post('nama_instruktur'),
+					'created_at' => date('Y-m-d H:i:s')
+				);
+				$this->db->insert('app_materi',$data);
+				$this->session->set_flashdata('status', '200');
+				redirect('site/materi');
+			}elseif($act == 'jadwal'){
+				$data = array(
+					'id_materi' => $this->input->post('materi'),
+					'id_instruktur' => $this->input->post('nama_instruktur'),
+					'hari' => $this->input->post('hari'),
+					'tanggal' => $this->input->post('tgl_belajar'),
+					'created_at' => date('Y-m-d H:i:s')
+				);
+				$this->db->insert('app_jadwal',$data);
+				$this->session->set_flashdata('status', '200');
+				redirect('site/jadwal');
+			}elseif($act == 'user'){
+				$data = array(
+					'fullname' => $this->input->post('nama_lengkap'),
+					'email' => $this->input->post('email'),
+					'password' => md5($this->input->post('password')),
+					'no_telpon' => $this->input->post('no_telpon'),
+					'id_user_role' => 4
+				);
+				$this->db->insert('app_users',$data);
+				$this->session->set_flashdata('status', '200');
+				redirect('site/user');
+			}
+		}elseif($type == 'update'){
+			if($act == 'instruktur'){
+				//$id = base64_decode($id);
+				$data_instruktur = array(
+					'nama_instruktur' => $this->input->post('nama_instruktur'),
+					'email' => $this->input->post('email'),
+					'no_telpon' => $this->input->post('no_telpon'),
+					// 'created_at' => date('Y-m-d H:i:s')
+				);
+				$this->db->where('id',$id);
+				$this->db->update('app_instruktur', $data_instruktur);
+				// print_r($this->db->last_query());die;
+				$this->session->set_flashdata('status', '200');
+				redirect('site/instruktur');
+			}elseif($act == 'materi'){
+				//$id = base64_decode($id);
+				$data_instruktur = array(
+					'nama_materi' => $this->input->post('nama_materi'),
+					'id_instruktur' => $this->input->post('nama_instruktur'),
+				);
+				$this->db->where('id',$id);
+				$this->db->update('app_materi', $data_instruktur);
+				// print_r($this->db->last_query());die;
+				$this->session->set_flashdata('status', '200');
+				redirect('site/materi');
+			}elseif($act == 'jadwal'){
+				$data = array(
+					'id_materi' => $this->input->post('materi'),
+					'id_instruktur' => $this->input->post('nama_instruktur'),
+					'hari' => $this->input->post('hari'),
+					'tanggal' => $this->input->post('tgl_belajar'),
+				);
+				$this->db->where('id',$id);
+				$this->db->update('app_jadwal', $data);
+				// print_r($this->db->last_query());die;
+				$this->session->set_flashdata('status', '200');
+				redirect('site/jadwal');
+			}elseif($act == 'user'){
+				$data = array(
+					'fullname' => $this->input->post('nama_lengkap'),
+					'email' => $this->input->post('email'),
+					'password' => md5($this->input->post('password')),
+					'no_telpon' => $this->input->post('no_telpon'),
+					// 'id_user_role' => $this->input->post('role')
+				);
+				$this->db->where('id', $id);
+				$this->db->update('app_users', $data);
+
+				redirect('site/user');
+			}
+		}elseif($type == 'delete'){
+			if($act == 'instruktur'){
+				$this->db->where('id',$id);
+				$this->db->delete('app_instruktur');
+				$this->session->set_flashdata('status', '200');
+				redirect('site/instruktur');
+			}elseif($act == 'materi'){
+				$this->db->where('id',$id);
+				$this->db->delete('app_materi');
+				$this->session->set_flashdata('status', '200');
+				redirect('site/materi');
+			}elseif($act == 'jadwal'){
+				$this->db->where('id',$id);
+				$this->db->delete('app_jadwal');
+				$this->session->set_flashdata('status', '200');
+				redirect('site/jadwal');
+			}elseif($act == 'users'){
+				$this->db->where('id',$id);
+				$this->db->delete('app_users');
+				$this->session->set_flashdata('status', '200');
+				redirect('site/users');
+			}
+		}
+
 	}
 
 	public function action($type="",$act="",$id=""){

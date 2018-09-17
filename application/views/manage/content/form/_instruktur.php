@@ -7,7 +7,7 @@
                 ?>
             <strong><?php echo ucfirst($act); ?></strong> Instruktur</div>
             <div class="card-body">
-            <form class="form-horizontal" action="<?= base_url('manage/execute/'.$act.'/kegiatan/').($act == 'add' ? "" : @$result[0]['id']); ?>" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" action="<?= base_url('site/execute/'.$act.'/instruktur/').($act == 'add' ? "" : @$result[0]['id']); ?>" method="post" enctype="multipart/form-data">
                 
                 <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Nama Instruktur</label>

@@ -7,7 +7,7 @@
                 ?>
             <strong><?php echo ucfirst($act); ?></strong> User</div>
             <div class="card-body">
-            <form class="form-horizontal" action="<?= base_url('manage/execute/'.$act.'/user/').($act == 'add' ? "" : $result[0]['id']); ?>" method="post">
+            <form class="form-horizontal" action="<?= base_url('site/execute/'.$act.'/user/').($act == 'add' ? "" : $result[0]['id']); ?>" method="post">
                 
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="text-input">Nama Lengkap</label>
