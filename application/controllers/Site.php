@@ -31,7 +31,7 @@ class Site extends CI_Controller {
 	public function pendaftaran()
 	{
 		$data['content'] = 'manage/content/_form_pendaftaran';
-		$data['result'] = "";
+		$data['data_materi'] = $this->site->getData('materi');
 		$this->load->view('manage/main_layout',$data);	
 	}
 
@@ -176,6 +176,44 @@ class Site extends CI_Controller {
 				$this->db->insert('app_users',$data);
 				$this->session->set_flashdata('status', '200');
 				redirect('site/user');
+			}elseif ($act == 'pendaftaran') {
+				$data_users = array(
+					'fullname' => $this->input->post('nama_lengkap'),
+					'email' => $this->input->post('email'),
+					'password' => md5("gama2018"),
+					'no_telpon' => $this->input->post('no_telpon'),
+					'id_user_role' => 3
+				);
+				$this->db->insert('app_users',$data_users);
+				$user_id = $this->db->insert_id();
+
+				$this->db->insert('history_peserta',array('keterangan' => 'Gama'. date('Y')));
+				$sequence = $this->db->query("SELECT MAX(id) AS id FROM history_peserta")->result_array();
+				$id_peserta = "GM-".date('Ymd').$sequence[0]['id'];
+				$data_peserta = array(
+					'id' => $id_peserta,
+					'users_id' => $user_id,
+					'tmpt_lahir' => $this->input->post('tmpt_lahir'),
+					'tgl_lahir' => $this->input->post('tgl_lahir'),
+					'alamat' => $this->input->post('alamat'),
+					'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+					'sekolah' => $this->input->post('sekolah'),
+					'hari_bimbel' => $this->input->post('hari_bimbel'),
+					'waktu_bimbel' => $this->input->post('waktu_bimbel'),
+					'id_materi' => $this->input->post('id_materi'),
+					'tgl_belajar' => $this->input->post('tgl_belajar'),
+					'program_kelas' => $this->input->post('program_kelas'),
+					'tgl_masuk' => $this->input->post('tgl_masuk'),
+					'created_at' => date('Y-m-d H:i:s')
+				);
+				$this->db->insert('app_list_peserta_didik',$data_peserta);
+				$param['email'] = $this->input->post('email');
+				$param['nama'] = $this->input->post('nama_lengkap');
+				$this->sendEmail($param);
+				$data['content'] = 'manage/content/_pendaftaran_berhasil';
+				$this->load->view('manage/main_layout',$data);	
+				// $this->session->set_flashdata('status', '200');
+				// redirect('site/user');
 			}
 		}elseif($type == 'update'){
 			if($act == 'instruktur'){
@@ -291,10 +329,10 @@ class Site extends CI_Controller {
 		}
 	}
 
-	public function sendEmail($data){
-		$subject = "Transfer Rp ". number_format($data['row'][0]['total_donasi'],0,',','.')." ke Rekening berikut";
-		$msg = $this->load->view('manage/content/_email_detail_transfer',$data,TRUE);
-		$email = $data['row'][0]['email'];
+	public function sendEmail($param){
+		$subject = "Pendaftaran Bimbel Gama";
+		$msg = $this->load->view('manage/content/_email_pendaftaran',$param,TRUE);
+		$email = $param['email'];
 		$ci = get_instance();
 		$config['protocol'] = "smtp";
 		$config['smtp_host'] = "ssl://smtp.googlemail.com";
@@ -305,7 +343,7 @@ class Site extends CI_Controller {
 		$config['mailtype'] = "html";
 		$config['newline'] = "\r\n";
 		$ci->email->initialize($config);
-		$ci->email->from('nuridin.mu23@gmail.com', 'PAY');
+		$ci->email->from('nuridin.mu23@gmail.com', 'Gama UI');
 		// $list = array('nuridin50@gmail.com');
 		$ci->email->to($email);
 		$ci->email->subject($subject);

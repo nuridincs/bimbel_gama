@@ -7,12 +7,12 @@
                 ?>
             <strong><?php echo ucfirst($act); ?></strong> Pendaftaran</div>
             <div class="card-body">
-            <form class="form-horizontal" action="<?= base_url('manage/execute/'.$act.'/kegiatan/').($act == 'add' ? "" : @$result[0]['id']); ?>" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal" action="<?= base_url('site/execute/add/pendaftaran/').($act == 'add' ? "" : @$result[0]['id']); ?>" method="post" enctype="multipart/form-data">
                 
                 <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Nama</label>
                 <div class="col-md-9">
-                    <input class="form-control" id="nama" type="text" name="nama" required placeholder="Masukan Nama" value="<?= isset($result[0]['nama']) ? $result[0]['nama'] : "" ?>">
+                    <input class="form-control" id="nama_lengkap" type="text" name="nama_lengkap" required placeholder="Masukan Nama" value="<?= isset($result[0]['fullnameema']) ? $result[0]['fullnameema'] : "" ?>">
                     <!-- <span class="help-block">This is a help text</span> -->
                 </div>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="password-input">Tempat Lahir</label>
                     <div class="col-md-9">
-                        <input class="form-control" id="tempat_lahir" type="text" name="tempat_lahir" required placeholder="Masukan Tempat Lahir" value="<?= isset($result[0]['tempat_lahir']) ? $result[0]['tempat_lahir'] : "" ?>">
+                        <input class="form-control" id="tmpt_lahir" type="text" name="tmpt_lahir" required placeholder="Masukan Tempat Lahir" value="<?= isset($result[0]['tmpt_lahir']) ? $result[0]['tmpt_lahir'] : "" ?>">
                         <!-- <span class="help-block">Please enter a complex password</span> -->
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="password-input">Jenis Kelamin</label>
                     <div class="col-md-9">
-                         <select name="jk" id="" class="form-control">
+                         <select name="jenis_kelamin" id="" class="form-control">
                             <option value="1">Laki-laki</option>
                             <option value="2">Perempuan</option>
                         </select>
@@ -64,14 +64,15 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="password-input">Email/Email Orang Tua</label>
                     <div class="col-md-9">
-                        <input class="form-control" id="datepicker" type="text" name="end_date" required placeholder="Masukan Email"  value="<?= isset($result[0]['end_date']) ? $result[0]['end_date'] : "" ?>">
+                        <input class="form-control" id="datepicker" type="text" name="email" required placeholder="Masukan Email"  value="<?= isset($result[0]['email']) ? $result[0]['email'] : "" ?>">
                         <!-- <span class="help-block">Please enter a complex password</span> -->
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="password-input">Hari Bimbel</label>
                     <div class="col-md-9">
-                        <select name="hari" id="" class="form-control">
+                        <select name="hari_bimbel" id="" class="form-control">
+                            <option value="">Pilih Hari</option>
                             <option value="1">Senin</option>
                             <option value="2">Selasa</option>
                             <option value="3">Rabu</option>
@@ -85,23 +86,36 @@
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="password-input">Materi Bimbel</label>
                     <div class="col-md-9">
-                        <input class="form-control" id="datepicker" type="text" name="materi_bimbel" required placeholder="Masukan Materi Bimbel"  value="<?= isset($result[0]['materi_bimbel']) ? $result[0]['materi_bimbel'] : "" ?>">
-                        <!-- <span class="help-block">Please enter a complex password</span> -->
+                         <select name="id_materi" id="" class="form-control">
+                            <option value="">--Pilih Nama Materi--</option>
+                            <?php foreach ($data_materi as $value) { ?>
+                                <option value="<?= $value['id'] ?>"><?= $value['nama_materi'] ?></option>
+                            <?php } ?>
+                            
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-3 col-form-label" for="password-input">Program Kelas</label>
                     <div class="col-md-9">
-                        <select name="hari" id="" class="form-control">
-                            <option value="1">Insentive</option>
-                            <option value="2">Private</option>
+                        <select name="program_kelas" id="" class="form-control">
+                            <option value="">Pilih Program</option>
+                            <option value="Intensive">Intensive (SD 1-5,SMP 7-9,SMA 10-12)</option>
+                            <option value="Private">Private (SD,SMP,SMA)</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-3 col-form-label" for="password-input">Waktu</label>
+                    <label class="col-md-3 col-form-label" for="password-input">Waktu Bimbel</label>
                     <div class="col-md-9">
-                        <input class="form-control" id="datepicker" type="text" name="waktu" required placeholder="Masukan Waktu"  value="<?= isset($result[0]['waktu']) ? $result[0]['waktu'] : "" ?>">
+                        <input class="form-control" id="datepicker" type="text" name="waktu_bimbel" required placeholder="Masukan Waktu_bimbel"  value="<?= isset($result[0]['waktu_bimbel']) ? $result[0]['waktu_bimbel'] : "" ?>">
+                        <!-- <span class="help-block">Please enter a complex password</span> -->
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="password-input">Tanggal Mulai Masuk</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="datepicker" type="text" name="tgl_masuk" required placeholder="Masukan tgl_masuk"  value="<?= isset($result[0]['tgl_masuk']) ? $result[0]['tgl_masuk'] : "" ?>">
                         <!-- <span class="help-block">Please enter a complex password</span> -->
                     </div>
                 </div>
